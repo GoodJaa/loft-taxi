@@ -1,6 +1,6 @@
 import React from 'react';
 // import './App.css';
-import {Home} from './Home';
+import Home from './Home';
 import {Profile} from './Profile';
 import {AppMap} from './AppMap';
 
@@ -11,11 +11,12 @@ const PAGES = {
 }
 
 class App extends React.Component {
-  state = { currentPage: "home" };
 
   navigateTo = (page) => {
     this.setState({ currentPage: page });
   }
+
+  state = { currentPage: "home" };
 
   render() {
     return (
@@ -26,7 +27,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
-                  onCLick={() => {
+                  onClick={() => {
                     this.navigateTo("map");
                   }}
                 >
@@ -36,7 +37,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
-                  onCLick={() => {
+                  onClick={() => {
                     this.navigateTo("profile");
                   }}
                 >
@@ -46,7 +47,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
-                  onCLick={() => {
+                  onClick={() => {
                     this.navigateTo("home");
                   }}
                 >

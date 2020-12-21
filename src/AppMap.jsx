@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const AppMap = () => {
-    return (<>Карта</>);
+    return (<h1>Карта</h1>);
 };
