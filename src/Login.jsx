@@ -19,8 +19,6 @@ class Login extends React.Component {
 
     onInputChange = (e) => {
         this.setState({ formField: { [e.target.name]: e.target.value } });
-        console.log(e.target.name);
-        console.log(e.target.value);
     };
 
     directTo = (event) => {
