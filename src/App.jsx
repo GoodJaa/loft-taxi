@@ -1,13 +1,13 @@
 import React from 'react';
 // import './App.css';
-import Home from './Home';
-import {Profile} from './Profile';
-import {AppMap} from './AppMap';
+import Login from './Login';
+import { Profile } from './Profile';
+import { AppMap } from './AppMap';
 
 const PAGES = {
-  map: <AppMap/>,
-  profile: <Profile/>,
-  home: <Home/>,
+  map: (props) => <AppMap {...props} />,
+  profile: (props) => <Profile {...props} />,
+  login: (props) => <Login {...props} />,
 }
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
     this.setState({ currentPage: page });
   }
 
-  state = { currentPage: "home" };
+  state = { currentPage: "login" };
 
   render() {
     return (
@@ -48,10 +48,10 @@ class App extends React.Component {
                 <button
                   className="navigation__btn"
                   onClick={() => {
-                    this.navigateTo("home");
+                    this.navigateTo("login");
                   }}
                 >
-                  Выход
+                  Логин
               </button>
               </li>
             </ul>
@@ -62,7 +62,10 @@ class App extends React.Component {
             логотип
         </section>
           <section className="main-section">
-            {PAGES[this.state.currentPage]}
+            {PAGES[this.state.currentPage]({
+              handleNavigate: this.navigateTo.bind(this)
+            })
+            }
           </section>
         </main>
       </>
