@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+html {
+    font-size: $baseFontSize;
+
+    @include tablets {
+        font-size: $baseFontSize - 2px;
+    }
+
+    @include phones {
+        font-size: $baseFontSize - 4px;
+    }
+
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    padding: 0;
+    border: none;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    border-radius: rem(5px);
+    cursor: pointer;
+    font: inherit;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    white-space: inherit;
+    font: inherit;
+}
+
+#root {
+    height: inherit;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-page {
+    height: inherit;
+    width: inherit;
+}
+
+.main-section {
+    height: 100%;
+    width: 100%;
+}

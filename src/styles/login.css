@@ -1,0 +1,15 @@
+.login-page-wrapper {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  width: 35%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}

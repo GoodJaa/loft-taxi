@@ -1,0 +1,15 @@
+@import "./styles/media.scss";
+
+//default fontsize
+
+$baseFontSize: 14px;
+
+//breakpoints
+
+$tablets: 768px;
+$phones: 480px;
+
+//setups
+
+@import "./styles/layout.scss";
+@import url('https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css');

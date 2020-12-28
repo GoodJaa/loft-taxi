@@ -1,8 +1,10 @@
 import React from 'react';
-// import './App.css';
-import Login from './Login';
-import { Profile } from './Profile';
-import { AppMap } from './AppMap';
+import './App.css';
+import Login from './pages/Login';
+import { Profile } from './pages/Profile';
+import { AppMap } from './pages/AppMap';
+import { WithAuth } from './helpers/AuthContext';
+import PropTypes from 'prop-types';
 
 const PAGES = {
   map: (props) => <AppMap {...props} />,
@@ -11,14 +13,30 @@ const PAGES = {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+  }
 
-  navigateTo = (page) => {
-    this.setState({ currentPage: page });
+  static propTypes = {
+    authData: PropTypes.shape({
+      isLoggedIn: PropTypes.bool.isRequired,
+      logIn: PropTypes.func.isRequired,
+      logOut: PropTypes.func.isRequired
+    })
   }
 
   state = { currentPage: "login" };
 
+  navigateTo = (page) => {
+    if (this.props.isLoggedIn) {
+      return this.setState({ currentPage: page });
+    }
+    return this.setState({ currentPage: "login" });
+  }
+
   render() {
+
     return (
       <>
         <header className="header">
@@ -48,19 +66,17 @@ class App extends React.Component {
                 <button
                   className="navigation__btn"
                   onClick={() => {
+                    this.props.logOut();
                     this.navigateTo("login");
                   }}
                 >
-                  Логин
+                  Выйти
               </button>
               </li>
             </ul>
           </nav>
         </header>
         <main className="main-page">
-          <section className="logo-section">
-            логотип
-        </section>
           <section className="main-section">
             {PAGES[this.state.currentPage]({
               handleNavigate: this.navigateTo.bind(this)
@@ -73,4 +89,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default WithAuth(App);
