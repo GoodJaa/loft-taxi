@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import './styles/header.css';
 import Login from './pages/Login';
 import { Profile } from './pages/Profile';
 import { AppMap } from './pages/AppMap';
 import { WithAuth } from './helpers/AuthContext';
+import {Logo} from 'loft-taxi-mui-theme';
 import PropTypes from 'prop-types';
 
 const PAGES = {
@@ -40,6 +42,9 @@ class App extends React.Component {
     return (
       <>
         <header className="header">
+          <div className="header__logo">
+            <Logo/>
+          </div>
           <nav className="navigation">
             <ul className="navigation__list">
               <li className="navigation__list-item">

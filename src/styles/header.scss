@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    width: 100%;
+    padding: 1.25rem 3.125rem;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation__list {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 1.3125rem;
+}
+
+.navigation__list-item {
+    margin-right: 3.125rem;
+    transition: color .3s;
+
+    &:hover {
+        color: #FDBF5A;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}

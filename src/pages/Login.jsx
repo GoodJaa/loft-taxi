@@ -4,6 +4,7 @@ import { WithAuth } from '../helpers/AuthContext'
 import {Button, Input, FormLabel} from '@material-ui/core';
 import { Logo } from "loft-taxi-mui-theme";
 import "../styles/login.css";
+import "../styles/button.css";
 
 
 class Login extends React.Component {
@@ -56,11 +57,12 @@ class Login extends React.Component {
                 isLoginForm ?
                     null :
                     <>
-                        <FormLabel htmlFor="userName">Как вас зовут?</FormLabel>
+                        <FormLabel htmlFor="userName" className="form__label label">Как вас зовут?</FormLabel>
                         <Input
                             id="name"
                             type="text"
                             name="userName"
+                            className="form__input"
                             value={userName}
                             onChange={this.onInputChange}
                         />
@@ -74,7 +76,7 @@ class Login extends React.Component {
                         </div>
                     </> :
                     null,
-            submitBtnValue: isLoginForm ? "Войти" : "Регистрация",
+            submitBtnValue: isLoginForm ? "Войти" : "Зарегистрироваться",
             switchFormText: isLoginForm ? "Новый пользователь?" : "Уже есть аккаунт?",
             switchFormPath: isLoginForm ? "registration" : "login"
         }
@@ -87,39 +89,44 @@ class Login extends React.Component {
                     </div>
                 </div>
                 <div className="login-section">
-                    <form className="form__login" onSubmit={(e) => { this.directTo(e) }}>
-                        <h1>{formElements.title}</h1>
-                        <FormLabel className="form-label" htmlFor="email">Email</FormLabel>
-                        <Input
-                            id="email"
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={this.onInputChange}
-                            placeholder="mail@mail.ru"
-                        />
-                        {formElements.userName}
-                        <FormLabel className="form-label" htmlFor="password">{formElements.passwordLabel}</FormLabel>
-                        <Input
-                            id="password"
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={this.onInputChange}
-                            placeholder="******"
-                        />
+                    <form className="form" onSubmit={(e) => { this.directTo(e) }}>
+                        <h1 className="form__title">{formElements.title}</h1>
+                        <div className="form__input-container">
+                            <FormLabel className="form__label label" htmlFor="email">Email</FormLabel>
+                            <Input
+                                id="email"
+                                type="email"
+                                name="email"
+                                className="form__input"
+                                value={email}
+                                onChange={this.onInputChange}
+                                placeholder="mail@mail.ru"
+                            />
+                            {formElements.userName}
+                            <FormLabel className="form__label label" htmlFor="password">{formElements.passwordLabel}</FormLabel>
+                            <Input
+                                id="password"
+                                type="password"
+                                name="password"
+                                className="form__input"
+                                value={password}
+                                onChange={this.onInputChange}
+                                placeholder="******"
+                            />
+                        </div>
                         {formElements.forgotPasswordBtn}
-                        <input type="submit" value={formElements.submitBtnValue}></input>
+                        <input type="submit" className="button button--margin" value={formElements.submitBtnValue} />
                         <div className="switch-form">
                             <span className="switch-form__text">{formElements.switchFormText}</span>
-                            <Button
+                            <button
+                                className="switch-form__btn"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     this.switchForm(formElements.switchFormPath);
                                 }}
                             >
                                 {isLoginForm ? "Регистрация" : "Логин"}
-                            </Button>
+                            </button>
                         </div>
                     </form>
                 </div>
