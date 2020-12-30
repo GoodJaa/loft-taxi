@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { WithAuth } from '../helpers/AuthContext'
-import {Button, Input, FormLabel} from '@material-ui/core';
+import {Input, FormLabel} from '@material-ui/core';
 import { Logo } from "loft-taxi-mui-theme";
 import "../styles/login.css";
 import "../styles/button.css";
 
 
-class Login extends React.Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -136,4 +136,4 @@ class Login extends React.Component {
 
 }
 
-export default WithAuth(Login);
+export const LoginWithAuth = WithAuth(Login);

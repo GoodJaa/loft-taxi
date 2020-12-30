@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
 
 
-export class AppMap extends Component {
+export class Map extends Component {
     map = null;
     mapContainer = React.createRef();
 
@@ -25,7 +25,7 @@ export class AppMap extends Component {
     render() {
         return (
             <div className="map-wrapper">
-                <div className="map" ref={this.mapContainer} />
+                <div className="map" data-testid="map" ref={this.mapContainer} />
             </div>
         );
     }

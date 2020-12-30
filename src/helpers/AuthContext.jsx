@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const {Provider, Consumer} = React.createContext();
+export const {Provider, Consumer} = React.createContext();
 
 export const AuthProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);

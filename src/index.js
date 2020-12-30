@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { AppWithAuth } from './App';
 import { theme } from "loft-taxi-mui-theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { AuthProvider } from "./helpers/AuthContext"
@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>
       <AuthProvider>
-        <App />
+        <AppWithAuth />
       </AuthProvider>
     </MuiThemeProvider>
   </React.StrictMode>,

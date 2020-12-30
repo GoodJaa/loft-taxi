@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import './styles/header.css';
-import Login from './pages/Login';
+import { LoginWithAuth } from './pages/Login';
 import { Profile } from './pages/Profile';
-import { AppMap } from './pages/AppMap';
+import {Map} from './pages/Map';
 import { WithAuth } from './helpers/AuthContext';
 import {Logo} from 'loft-taxi-mui-theme';
 import PropTypes from 'prop-types';
 
 const PAGES = {
-  map: (props) => <AppMap {...props} />,
+  map: (props) => <Map {...props} />,
   profile: (props) => <Profile {...props} />,
-  login: (props) => <Login {...props} />,
+  login: (props) => <LoginWithAuth {...props} />,
 }
 
-class App extends React.Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
@@ -50,6 +50,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
+                  data-testid="map-btn"
                   onClick={() => {
                     this.navigateTo("map");
                   }}
@@ -60,6 +61,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
+                  data-testid="profile-btn"
                   onClick={() => {
                     this.navigateTo("profile");
                   }}
@@ -70,6 +72,7 @@ class App extends React.Component {
               <li className="navigation__list-item">
                 <button
                   className="navigation__btn"
+                  data-testid="exit-btn"
                   onClick={() => {
                     this.props.logOut();
                     this.navigateTo("login");
@@ -94,4 +97,5 @@ class App extends React.Component {
   }
 }
 
-export default WithAuth(App);
+export const AppWithAuth = WithAuth(App);
+
