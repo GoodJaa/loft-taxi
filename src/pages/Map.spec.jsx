@@ -1,15 +1,20 @@
-import React from 'react'
-import { render } from '@testing-library/react'
-import { Map } from './Map'
+import React from "react";
+import {Map} from "./Map";
+import {render} from "@testing-library/react";
+import mapboxgl from "mapbox-gl";
 
-
-jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
-    Map: jest.fn()
+jest.mock("mapbox-gl", () => ({
+    Map: jest.fn(() => ({ remove: () => { } })),
 }));
 
-describe('Map', () => {
-    it('renders map page', () => {
-        const {container} = render(<Map/>)
-        expect(container.innerHTML).toMatch("<div class=\"map-wrapper\"><div class=\"map\" data-testid=\"map\"></div></div>")
-    })
-})
+describe("Map", () => {
+    it("renders correctly", () => {
+        const { getByTestId } = render(<Map/>);
+        expect(mapboxgl.Map).toHaveBeenCalledWith({
+            container: getByTestId('map'),
+            style: 'mapbox://styles/mapbox/light-v10',
+            center: [30.3056504, 59.9429126],
+            zoom: 12
+        });
+    });
+});
