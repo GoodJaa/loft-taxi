@@ -19,8 +19,7 @@ export class Map extends Component {
     }
 
     componentWillUnmount() {
-        const removeMap = this.map.remove()
-        removeMap()
+        this.map.remove()
     }
 
     render() {

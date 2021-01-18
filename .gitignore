@@ -2,7 +2,8 @@
 prepros.config
 .eslintcache
 jest.config.js
-.babelrc
+.babelrc.json
+babel.config.json
 #config
 /config
 

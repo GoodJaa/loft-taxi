@@ -26,7 +26,6 @@
 
 .form {
     max-width: 36.25rem;
-    max-height: 33.75rem;
     padding: 3.5rem 7rem;
     display: flex;
     flex-direction: column;
@@ -59,6 +58,10 @@
 .form__input {
     width: 22.1875rem;
     margin-bottom: 1.5625rem;
+}
+
+.form__input.form__input--margin {
+    margin-bottom: 2.875rem;
 }
 
 .forgot-password__btn-wrapper {
