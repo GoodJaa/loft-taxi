@@ -7,7 +7,6 @@ import "../styles/login.css";
 import "../styles/button.css";
 import { Redirect } from 'react-router-dom';
 import { Map } from './Map';
-import {ProfileWrapper} from './Profile'
 import { authenticate, registration, chooseLoginForm, chooseSignUpForm } from '../helpers/actions';
 
 
@@ -44,6 +43,7 @@ class Login extends Component {
 
     logIn = (event) => {
         event.preventDefault();
+
         const { email, password } = event.target;
         this.props.authenticate(email.value, password.value);
     }
@@ -156,13 +156,11 @@ class Login extends Component {
             )
         } else {
             return <>
-                <Redirect to="/profile" component={ProfileWrapper} />
+                <Redirect to="/map" component={Map} />
             </>
         }
     }
 }
-
-/*изменить директ на Мар и убрать импорт профиля*/
 
 export const LoginWrapper = connect(
     (state) => ({

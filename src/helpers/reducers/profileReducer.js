@@ -1,19 +1,14 @@
-import { PROFILE_EDIT, PROFILE_SEND } from '../actions'
+import { PROFILE_SUCCESS } from '../actions'
 
 export const initialState = {
-        cardNumber: '',
-        expiryDate: '',
-        cardName: '',
-        cvc: '',
+    profileSend: false
 }
 
 export default function profileReducer(state = initialState, action) {
-    switch (action.type) {
-        case PROFILE_EDIT:
-            console.log(state, action);
-            return Object.assign({}, ...state, {...action.payload})
-        case PROFILE_SEND:
-            return Object.assign({}, ...state, {...action.payload})
+    switch(action.type) {
+        case PROFILE_SUCCESS: {
+            return {profileSend: true}
+        }
         default:
             return state
     }

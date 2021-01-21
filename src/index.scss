@@ -14,3 +14,11 @@ $phones: 480px;
 
 @import "./styles/layout.scss";
 @import url('https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css');
+
+//components
+
+@import "./styles/profile.scss";
+@import "./styles/map.scss";
+@import "./styles/login.scss";
+@import "./styles/header.scss";
+@import "./styles/button.scss";

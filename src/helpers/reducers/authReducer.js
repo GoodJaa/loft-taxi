@@ -1,4 +1,4 @@
-import {LOG_IN, LOG_OUT, ONLINE} from '../actions'
+import {LOG_IN, LOG_OUT} from '../actions'
 
 const initialState = {
     isLoggedIn: false
@@ -11,9 +11,6 @@ export default function authReducer(state = initialState, action) {
         }
         case LOG_OUT: {
             return {isLoggedIn: false}
-        }
-        case ONLINE: {
-            return localStorage.authorizeStatus
         }
         default:
             return state

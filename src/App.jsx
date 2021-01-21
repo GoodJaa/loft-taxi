@@ -9,6 +9,7 @@ import { Logo } from 'loft-taxi-mui-theme';
 import PropTypes from 'prop-types';
 import { Link, Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './helpers/PrivateRoute';
+import { unloadState } from './helpers/initApp';
 
 export class App extends Component {
 
@@ -20,7 +21,7 @@ export class App extends Component {
   render() {
     const renderHeader = {
       header:
-        this.props.isLoggedIn ? //поставить всклицательный знак чтобы хедер исчезал
+        !this.props.isLoggedIn ?
           null :
           <header className="header">
             <div className="header__logo">
@@ -41,9 +42,9 @@ export class App extends Component {
                 <li className="navigation__list-item">
                   <button
                     onClick={(e) => {
-                        e.preventDefault()
-                        this.props.logOut()
-                        delete localStorage.authorizeStatus
+                        e.preventDefault();
+                        this.props.logOut();
+                        unloadState();
                       }
                     }
                     className="navigation__btn"
@@ -75,7 +76,6 @@ export class App extends Component {
 export const AppWithAuth = connect(
   (state) => ({
     isLoggedIn: state.authReducer.isLoggedIn,
-    authorizeStatus: localStorage.authorizeStatus
   }),
   { logOut }
 )(App);

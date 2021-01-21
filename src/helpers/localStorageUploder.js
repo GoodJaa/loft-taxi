@@ -1,6 +1,4 @@
-export const uploadAuthorizeStatus = (authorizeStatus) => {
-    localStorage.authorizeStatus = authorizeStatus
-}
+// Локальная регистрация пользователя и поиск пользователей в localStorage при логине
 
 export const uploadUserData = (userData) => {
 

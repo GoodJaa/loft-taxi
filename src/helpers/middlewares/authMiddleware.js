@@ -1,7 +1,8 @@
 import {logIn} from '../actions'
 import {safelyServerLogin} from '../api'
 import {AUTHENTICATE} from '../actions'
-import {uploadAuthorizeStatus, localStorageUserFinder} from '../localStorageUploder'
+import {localStorageUserFinder} from '../localStorageUploder'
+import {saveState} from '../initApp'
 
 export const authMiddleware = (store) => (next) => async (action) => {
     if(action.type === AUTHENTICATE) {
@@ -9,7 +10,7 @@ export const authMiddleware = (store) => (next) => async (action) => {
         const success = await safelyServerLogin(email, password)
         if(success || localStorageUserFinder(email, password)) {
             store.dispatch(logIn())
-            uploadAuthorizeStatus('ONLINE')
+            saveState(store.getState())
         }
     } else {
         next(action)

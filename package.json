@@ -48,13 +48,13 @@
     },
     "cz-customizable": {
       "config": "config/git/commitizen.js"
-    },
-    {
-      "commit": "cz"
     }
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.1",
-    "@babel/preset-react": "^7.12.10"
+    "@babel/preset-react": "^7.12.10",
+    "cz-customizable": "^6.3.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^8.0.2"
   }
 }

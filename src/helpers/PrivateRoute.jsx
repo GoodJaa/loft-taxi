@@ -6,7 +6,7 @@ export const PrivateRoute = connect(state => ({ isLoggedIn: state.authReducer.is
     ({ component: Component, isLoggedIn, ...rest }) => (
         <Route
             {...rest}
-            render={props => (!isLoggedIn) ? (<Component {...props} />) : (<Redirect to="/" />)} //убрать восклицательный знак чтобы включить аутенфикацию
+            render={props => (isLoggedIn) ? (<Component {...props} />) : (<Redirect to="/" />)}
         />
     )
 )
