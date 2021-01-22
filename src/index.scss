@@ -10,15 +10,22 @@ $baseFontSize: 14px;
 $tablets: 768px;
 $phones: 480px;
 
+html {
+    font-size: $baseFontSize;
+
+    @include tablets {
+        font-size: $baseFontSize - 2px;
+    }
+
+    @include phones {
+        font-size: $baseFontSize - 4px;
+    }
+
+}
+
 //setups
 
 @import "./styles/layout.scss";
 @import url('https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css');
 
 //components
-
-@import "./styles/profile.scss";
-@import "./styles/map.scss";
-@import "./styles/login.scss";
-@import "./styles/header.scss";
-@import "./styles/button.scss";

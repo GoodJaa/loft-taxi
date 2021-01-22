@@ -4,6 +4,7 @@ prepros.config
 jest.config.js
 .babelrc.json
 babel.config.json
+gulpfile.js
 #config
 /config
 

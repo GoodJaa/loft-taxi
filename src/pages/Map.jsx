@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
+import "../styles/layout.css";
 
 
 export class Map extends Component {

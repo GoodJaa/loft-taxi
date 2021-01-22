@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/header.css';
+import './styles/layout.css';
 import { LoginWrapper } from './pages/Login';
 import { ProfileWrapper } from './pages/Profile';
 import { Map } from './pages/Map';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/profile.css';
-import '../styles/layout.scss';
+import '../styles/layout.css';
+import '../styles/credit-card.css';
 import { Logo, MCIcon } from "loft-taxi-mui-theme";
 import { connect } from 'react-redux';
 import { profileSend } from '../helpers/actions'
@@ -82,26 +83,28 @@ class Profile extends Component {
                                         onChange={this.onInputChange}
                                     />
                                 </div>
-                                <div className="profile__inputs-date-cvc">
-                                    <div className="profile__input-wrapper">
+                                <div className="profile__inputs">
+                                    <div className="profile__input-wrapper profile__input-wrapper--date">
                                         <label htmlFor="dateMonth" className="profile__label">
                                             MM/YY
                                         </label>
                                         <div className="profile__input-date">
                                             <input
-                                                className="profile__input"
+                                                className="profile__input profile__input--month"
                                                 id="dateMonth"
                                                 type="number"
                                                 name="expiryDateMonth"
+                                                maxLength="2"
                                                 value={expiryDateMonth}
                                                 onChange={this.onInputChange}
                                             />
-                                            <span className="profile__inputs-delimiter">/</span>
+                                            <div className="profile__inputs-delimiter">/</div>
                                             <input
                                                 className="profile__input"
                                                 id="dateYear"
                                                 type="number"
                                                 name="expiryDateYear"
+                                                maxLength="2"
                                                 value={expiryDateYear}
                                                 onChange={this.onInputChange}
                                             />
@@ -126,7 +129,7 @@ class Profile extends Component {
                         <div className="credit-card-wrapper">
                             <div className="credit-card">
                                 <div className="credit-card__header">
-                                    <Logo />
+                                    <Logo className="credit-card__logo"/>
                                     <div className="credit-card__date-wrapper">
                                         <span className="credit-card__date">{this.state.formFields.expiryDateMonth}</span>
                                         <span>/</span>

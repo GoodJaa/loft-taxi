@@ -5,6 +5,7 @@ import { Input, FormLabel } from '@material-ui/core';
 import { Logo } from "loft-taxi-mui-theme";
 import "../styles/login.css";
 import "../styles/button.css";
+import "../styles/layout.css";
 import { Redirect } from 'react-router-dom';
 import { Map } from './Map';
 import { authenticate, registration, chooseLoginForm, chooseSignUpForm } from '../helpers/actions';

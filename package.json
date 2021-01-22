@@ -54,6 +54,8 @@
     "@babel/plugin-syntax-jsx": "^7.12.1",
     "@babel/preset-react": "^7.12.10",
     "cz-customizable": "^6.3.0",
+    "gulp": "^4.0.2",
+    "gulp-svg-sprite": "^1.5.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^8.0.2"
   }
