@@ -11,7 +11,7 @@ import { Map } from './Map';
 import { authenticate, registration, chooseLoginForm, chooseSignUpForm } from '../helpers/actions';
 
 
-class Login extends Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {

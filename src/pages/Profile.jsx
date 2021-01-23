@@ -4,7 +4,8 @@ import '../styles/layout.css';
 import '../styles/credit-card.css';
 import { Logo, MCIcon } from "loft-taxi-mui-theme";
 import { connect } from 'react-redux';
-import { profileSend } from '../helpers/actions'
+import { profileSend } from '../helpers/actions';
+// import {withStyles} from '@matetial-ui/core';
 
 
 class Profile extends Component {

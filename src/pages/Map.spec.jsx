@@ -3,9 +3,7 @@ import {Map} from "./Map";
 import {render} from "@testing-library/react";
 import mapboxgl from "mapbox-gl";
 
-jest.mock("mapbox-gl", () => ({
-    Map: jest.fn(() => ({ remove: () => { } })),
-}));
+jest.mock("mapbox-gl");
 
 describe("Map", () => {
     it("renders correctly", () => {
