@@ -17,7 +17,8 @@ class Profile extends Component {
                 expiryDateMonth: '01',
                 expiryDateYear: '22',
                 cardName: 'TEST',
-                cvc: '910'
+                cvc: '910',
+                token: ''
             }
         }
     }
@@ -39,10 +40,10 @@ class Profile extends Component {
             cardNumber.value,
             `${expiryDateMonth.value}\\${expiryDateYear.value}`,
             cardName.value,
-            cvc.value
+            cvc.value,
+            this.state.token
         );
 
-        console.log(this.state)
     }
 
     render() {
@@ -67,6 +68,7 @@ class Profile extends Component {
                                         id="name"
                                         type="text"
                                         name="cardName"
+                                        maxLength="20"
                                         value={cardName}
                                         onChange={this.onInputChange}
                                     />
@@ -80,6 +82,7 @@ class Profile extends Component {
                                         id="number"
                                         type="number"
                                         name="cardNumber"
+                                        maxLength="20"
                                         value={cardNumber}
                                         onChange={this.onInputChange}
                                     />
@@ -120,6 +123,7 @@ class Profile extends Component {
                                             id="cvc"
                                             type="number"
                                             name="cvc"
+                                            maxLength="3"
                                             value={cvc}
                                             onChange={this.onInputChange}
                                         />

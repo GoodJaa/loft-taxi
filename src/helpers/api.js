@@ -1,4 +1,6 @@
-const serverLogin = async (email, password) => {
+import formReducer from "./reducers/formReducer";
+
+const serverLogin = async (email, password, token) => {
     let response = await fetch(
         'https://loft-taxi.glitch.me/auth',
         {
@@ -6,15 +8,15 @@ const serverLogin = async (email, password) => {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({ email: `${email}`, password: `${password}` })
+            body: JSON.stringify({ email: `${email}`, password: `${password}`, token: `${token}` })
         }
     );
 
     const data = await response.json();
-    return succesHandler(data);
+    return data;
 }
 
-const serverSignUp = async (email, name, surname, password) => {
+const serverSignUp = async (email, name, surname, password, token) => {
     let response = await fetch(
         'https://loft-taxi.glitch.me/register',
         {
@@ -23,17 +25,17 @@ const serverSignUp = async (email, name, surname, password) => {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(
-                { email: `${email}`, name: `${name}`, surname: `${surname}`, password: `${password}` }
+                { email: `${email}`, name: `${name}`, surname: `${surname}`, password: `${password}`, token: `${token}` }
             )
         }
     )
 
     const data = await response.json();
 
-    return succesHandler(data);
+    return data;
 }
 
-const serverProfile = async (cardNumber, expiryDate, cardName, cvc) => {
+const serverProfile = async (cardNumber, expiryDate, cardName, cvc, token) => {
     let response = await fetch(
         'https://loft-taxi.glitch.me/card',
         {
@@ -42,22 +44,14 @@ const serverProfile = async (cardNumber, expiryDate, cardName, cvc) => {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(
-                { cardNumber: `${cardNumber}`, expiryDate: `${expiryDate}`, cardName: `${cardName}`, cvc: `${cvc}`, token: "AUTH_TOKEN" }
+                { cardNumber: `${cardNumber}`, expiryDate: `${expiryDate}`, cardName: `${cardName}`, cvc: `${cvc}`, token: `${token}` }
             )
         }
     )
 
     const data = await response.json();
-
-    return succesHandler(data);
-}
-
-const succesHandler = (data) => {
-    if(data.success) {
-        return data.success;
-    } else {
-        return console.log(data.error)
-    }
+    console.log(data)
+    return data;
 }
 
 const tryCatchWrapper = (handleError) => (requestFunc) => (...args) => requestFunc(...args).catch(handleError);

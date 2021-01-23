@@ -25,7 +25,8 @@ export const loadState = () => {
 export const unloadState = () => {
     try {
         if (localStorage['appState']) {
-            localStorage.removeItem('appState')
+            localStorage.removeItem('appState');
+            localStorage.removeItem('token')
         }
     } catch (error) {
         console.log(`Возникла непредвиденная ошибка ${error.name}: ${error.value}. Call sequence: ${error.stack}`)

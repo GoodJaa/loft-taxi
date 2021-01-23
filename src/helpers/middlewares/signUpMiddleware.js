@@ -7,13 +7,13 @@ export const signUpMiddleware = (store) => (next) => async (action) => {
     if (action.type === REGISTRATION) {
         const {email, name, surname, password} = action.payload;
 
-        if (email && name && surname && password) {
-            uploadUserData({email, name, surname, password});
-        }
+        const data = await safelyServerSignUp(email, name, surname, password);
+        if (data.success) {
 
-        const success = await safelyServerSignUp(email, name, surname, password);
-        if (success) {
+            uploadUserData(data.token);
             store.dispatch(signUp())
+        } else {
+            console.log(data.error)
         }
     } else {
         return next(action)
