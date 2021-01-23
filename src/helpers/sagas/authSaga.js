@@ -1,17 +1,25 @@
-// import {takeEvery, call, put} from 'redux-saga/effect'
-// import {authenticate, logIn} from '../actions';
-// import {safelyServerLogin} from '../api';
-// import {localStorageUserFinder} from '../localStorageUploder';
-// import {saveState} from '../initApp';
+import { takeEvery, call, put, select } from 'redux-saga/effects'
+import { AUTHENTICATE, logIn } from '../actions';
+import { safelyServerLogin } from '../api';
+import { uploadUserData } from '../localStorageUploder';
+import { saveState } from '../initApp';
 
 
-// export function* authSaga() {
-//     yield takeEvery(authenticate, function* (action, store) {
-//         const {email, password} = action.payload;
-//         const success = yield call(safelyServerLogin, email, password);
-//         if(success || localStorageUserFinder(email, password)) {
-//             yield put(logIn())
-//             yield saveState(store.getState())
-//         }
-//     })
-// }
+export function* authSaga() {
+    yield takeEvery(AUTHENTICATE, authenticateSaga)
+}
+
+export function* authenticateSaga(action) {
+    const { email, password } = action.payload;
+    const data = yield call(safelyServerLogin, email, password);
+    if (data.success) {
+        if (localStorage.getItem(data.token)) {
+            localStorage.removeItem('token')
+        }
+        uploadUserData(data.token);
+        yield put(logIn());
+        saveState(yield select());
+    } else {
+        console.log(data.error)
+    }
+}

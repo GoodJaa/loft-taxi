@@ -52,6 +52,7 @@ export class Login extends Component {
 
     signUp = (event) => {
         event.preventDefault();
+
         const { email, name, surname, password } = event.target;
         this.props.registration(email.value, name.value, surname.value, password.value, this.state.token);
     }

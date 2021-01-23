@@ -5,7 +5,6 @@ import { uploadProfileData } from '../localStorageUploder'
 export const profileMiddleware = (store) => (next) => async (action) => {
     try {
         if (action.type === PROFILE_SEND) {
-            console.log(action)
             const { cardNumber, expiryDate, cardName, cvc } = action.payload;
             const token = JSON.parse(localStorage.token)
             const data = await safelyServerProfile(cardNumber, expiryDate, cardName, cvc, token)

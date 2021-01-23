@@ -1,5 +1,3 @@
-import formReducer from "./reducers/formReducer";
-
 const serverLogin = async (email, password, token) => {
     let response = await fetch(
         'https://loft-taxi.glitch.me/auth',
