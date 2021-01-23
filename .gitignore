@@ -3,6 +3,8 @@ prepros.config
 .eslintcache
 jest.config.js
 .babelrc
+babel.config.json
+gulpfile.js
 #config
 /config
 
