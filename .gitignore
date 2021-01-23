@@ -2,7 +2,11 @@
 prepros.config
 .eslintcache
 jest.config.js
+<<<<<<< HEAD
 .babelrc
+=======
+.babelrc.json
+>>>>>>> week-3
 babel.config.json
 gulpfile.js
 #config

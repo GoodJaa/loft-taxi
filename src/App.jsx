@@ -1,95 +1,72 @@
-import React, {Component} from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import './styles/header.css';
-import { LoginWithAuth } from './pages/Login';
-import { Profile } from './pages/Profile';
-import {Map} from './pages/Map';
-import { WithAuth } from './helpers/AuthContext';
-import {Logo} from 'loft-taxi-mui-theme';
+import './styles/layout.css';
+import { LoginWrapper } from './pages/Login';
+import { ProfileWrapper } from './pages/Profile';
+import { Map } from './pages/Map';
+import { connect } from 'react-redux';
+import { logOut } from './helpers/actions'
+import { Logo } from 'loft-taxi-mui-theme';
 import PropTypes from 'prop-types';
-
-const PAGES = {
-  map: (props) => <Map {...props} />,
-  profile: (props) => <Profile {...props} />,
-  login: (props) => <LoginWithAuth {...props} />,
-}
+import { Link, Switch, Route } from 'react-router-dom';
+import { PrivateRoute } from './helpers/PrivateRoute';
+import { unloadState } from './helpers/initApp';
 
 export class App extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-  }
 
   static propTypes = {
-    authData: PropTypes.shape({
-      isLoggedIn: PropTypes.bool.isRequired,
-      logIn: PropTypes.func.isRequired,
-      logOut: PropTypes.func.isRequired
-    })
-  }
-
-  state = { currentPage: "login" };
-
-  navigateTo = (page) => {
-    if (this.props.isLoggedIn) {
-      return this.setState({ currentPage: page });
-    }
-    return this.setState({ currentPage: "login" });
+    isLoggedIn: PropTypes.bool,
+    signUpComplete: PropTypes.bool
   }
 
   render() {
-
+    const renderHeader = {
+      header:
+        !this.props.isLoggedIn ?
+          null :
+          <header className="header">
+            <div className="header__logo">
+              <Logo />
+            </div>
+            <nav className="navigation">
+              <ul className="navigation__list">
+                <li className="navigation__list-item">
+                  <Link to="/map" className="navigation__btn">
+                    Карта
+                  </Link>
+                </li>
+                <li className="navigation__list-item">
+                  <Link to="/profile" className="navigation__btn">
+                    Профиль
+                  </Link>
+                </li>
+                <li className="navigation__list-item">
+                  <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        this.props.logOut();
+                        unloadState();
+                      }
+                    }
+                    className="navigation__btn"
+                  >
+                    Выйти
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </header>
+    }
     return (
       <>
-        <header className="header">
-          <div className="header__logo">
-            <Logo/>
-          </div>
-          <nav className="navigation">
-            <ul className="navigation__list">
-              <li className="navigation__list-item">
-                <button
-                  className="navigation__btn"
-                  data-testid="map-btn"
-                  onClick={() => {
-                    this.navigateTo("map");
-                  }}
-                >
-                  Карта
-              </button>
-              </li>
-              <li className="navigation__list-item">
-                <button
-                  className="navigation__btn"
-                  data-testid="profile-btn"
-                  onClick={() => {
-                    this.navigateTo("profile");
-                  }}
-                >
-                  Профиль
-              </button>
-              </li>
-              <li className="navigation__list-item">
-                <button
-                  className="navigation__btn"
-                  data-testid="exit-btn"
-                  onClick={() => {
-                    this.props.logOut();
-                    this.navigateTo("login");
-                  }}
-                >
-                  Выйти
-              </button>
-              </li>
-            </ul>
-          </nav>
-        </header>
+        { renderHeader.header}
         <main className="main-page">
           <section className="main-section">
-            {PAGES[this.state.currentPage]({
-              handleNavigate: this.navigateTo.bind(this)
-            })
-            }
+            <Switch>
+              <PrivateRoute path="/map" component={Map} />
+              <PrivateRoute path="/profile" component={ProfileWrapper} />
+              <Route exact path="/" component={LoginWrapper} />
+            </Switch>
           </section>
         </main>
       </>
@@ -97,5 +74,10 @@ export class App extends Component {
   }
 }
 
-export const AppWithAuth = WithAuth(App);
+export const AppWithAuth = connect(
+  (state) => ({
+    isLoggedIn: state.authReducer.isLoggedIn,
+  }),
+  { logOut }
+)(App);
 
