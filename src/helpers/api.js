@@ -52,6 +52,15 @@ const serverProfile = async (cardNumber, expiryDate, cardName, cvc, token) => {
     return data;
 }
 
+const serverAddressList = async () => {
+    let response = await fetch(
+        'https://loft-taxi.glitch.me/addressList'
+    )
+
+    const data = await response.json();
+    
+}
+
 const tryCatchWrapper = (handleError) => (requestFunc) => (...args) => requestFunc(...args).catch(handleError);
 
 const handleError = (e) => console.log(`Что то пошло не так. Ошибка: ${e.error}`);
@@ -63,3 +72,5 @@ export const safelyServerLogin = errorHandlerWrapper(serverLogin);
 export const safelyServerSignUp = errorHandlerWrapper(serverSignUp);
 
 export const safelyServerProfile = errorHandlerWrapper(serverProfile);
+
+export const safelyServerAddressList = errorHandlerWrapper(serverAddressList);

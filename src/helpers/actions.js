@@ -17,6 +17,10 @@ export const SIGNUP_FORM = 'SIGNUP_FORM'
 export const PROFILE_SEND = 'PROFILE_SEND'
 export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
 
+// TaxiForm action
+
+export const LOAD_ADDRESS = 'LOAD_ADDRESS'
+
 // Action creators
 
 export const logIn = () => ({ type: LOG_IN });
@@ -25,6 +29,7 @@ export const signUp = () => ({ type: SIGN_UP });
 export const chooseLoginForm = () => ({ type: LOGIN_FORM });
 export const chooseSignUpForm = () => ({ type: SIGNUP_FORM });
 export const profileSuccess = () => ({ type: PROFILE_SUCCESS });
+export const loadAddress = () => ({ type: LOAD_ADDRESS });
 
 export const profileSend = (cardNumber, expiryDate, cardName, cvc) => (
     {

@@ -13,11 +13,11 @@ class Profile extends Component {
         super(props);
         this.state = {
             formFields: {
-                cardNumber: '2000000000000000',
-                expiryDateMonth: '01',
-                expiryDateYear: '22',
-                cardName: 'TEST',
-                cvc: '910',
+                cardNumber: '',
+                expiryDateMonth: '',
+                expiryDateYear: '',
+                cardName: '',
+                cvc: '',
                 token: ''
             }
         }

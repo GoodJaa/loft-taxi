@@ -43,10 +43,10 @@ export class App extends Component {
                 <li className="navigation__list-item">
                   <button
                     onClick={(e) => {
-                        e.preventDefault();
-                        this.props.logOut();
-                        unloadState();
-                      }
+                      e.preventDefault();
+                      this.props.logOut();
+                      unloadState();
+                    }
                     }
                     className="navigation__btn"
                   >

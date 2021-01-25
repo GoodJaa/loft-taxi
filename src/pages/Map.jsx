@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
 import "../styles/layout.css";
-
+import TaxiForm from './TaxiForm';
 
 export class Map extends Component {
     map = null;
@@ -27,6 +27,7 @@ export class Map extends Component {
         return (
             <div className="map-wrapper">
                 <div className="map" data-testid="map" ref={this.mapContainer} />
+                <TaxiForm />
             </div>
         );
     }
