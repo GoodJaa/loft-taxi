@@ -20,6 +20,7 @@ export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
 // TaxiForm action
 
 export const LOAD_ADDRESS = 'LOAD_ADDRESS'
+export const ADDRESS_LIST = 'ADDRESS_LIST'
 
 // Action creators
 
@@ -28,8 +29,22 @@ export const logOut = () => ({ type: LOG_OUT });
 export const signUp = () => ({ type: SIGN_UP });
 export const chooseLoginForm = () => ({ type: LOGIN_FORM });
 export const chooseSignUpForm = () => ({ type: SIGNUP_FORM });
-export const profileSuccess = () => ({ type: PROFILE_SUCCESS });
+
 export const loadAddress = () => ({ type: LOAD_ADDRESS });
+
+export const loadAddressList = (addresses) => (
+    {
+        type: ADDRESS_LIST,
+        payload: { addresses }
+    }
+)
+
+export const profileSuccess = (profileData) => (
+    {
+        type: PROFILE_SUCCESS,
+        payload: { profileData }
+    }
+);
 
 export const profileSend = (cardNumber, expiryDate, cardName, cvc) => (
     {

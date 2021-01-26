@@ -1,6 +1,6 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects'
-import { AUTHENTICATE, logIn } from '../actions';
-import { safelyServerLogin } from '../api';
+import { AUTHENTICATE, logIn, profileSuccess } from '../actions';
+import { safelyServerLogin, safelyRequestProfileData } from '../api';
 import { uploadUserData } from '../localStorageUploder';
 import { saveState } from '../initApp';
 
@@ -18,6 +18,11 @@ export function* authenticateSaga(action) {
         }
         uploadUserData(data.token);
         yield put(logIn());
+        const profileData = yield put(safelyRequestProfileData(data.token))
+        if(profileData) {
+            profileSuccess(profileData)
+            console.log(profileData)
+        }
         saveState(yield select());
     } else {
         console.log(data.error)

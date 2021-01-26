@@ -1,13 +1,13 @@
 import { PROFILE_SUCCESS } from '../actions'
 
 export const initialState = {
-    profileSend: false
+    profileData: null
 }
 
 export default function profileReducer(state = initialState, action) {
     switch(action.type) {
         case PROFILE_SUCCESS: {
-            return {profileSend: true}
+            return {profileData: action.payload}
         }
         default:
             return state

@@ -1,16 +1,16 @@
-import {LOAD_ADDRESS} from '../actions'
+import {ADDRESS_LIST} from '../actions'
 
 const initialState = {
-    downloadRequest: false
+    addresses: null
 }
 
-export default function downloadAddressList(state = initialState, action) {
+export default function loadAddressReducer(state = initialState, action) {
     switch(action.type) {
-        case LOAD_ADDRESS: {
-            return {downloadAddressList: true}
+        case ADDRESS_LIST: {
+            return {addresses: action.payload}
         }
         default: {
-            return {downloadAddressList: false}
+            return state
         }
     }
 }

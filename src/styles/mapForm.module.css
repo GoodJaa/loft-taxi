@@ -1,0 +1,7 @@
+.paper {
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    max-width: 30%;
+    z-index: 100;
+}
