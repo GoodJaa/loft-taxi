@@ -13,6 +13,7 @@ export const loadState = () => {
     try {
         if (localStorage['appState']) {
             const preservedState = JSON.parse(localStorage['appState']);
+            preservedState.profileSaveReducer.profileSave = false;
             return preservedState;
         }
         return undefined;

@@ -7,7 +7,7 @@ import "../styles/login.css";
 import "../styles/button.css";
 import "../styles/layout.css";
 import { Redirect } from 'react-router-dom';
-import { Map } from './Map';
+import { MapWrapper } from './Map';
 import { authenticate, registration, chooseLoginForm, chooseSignUpForm } from '../helpers/actions';
 
 
@@ -159,7 +159,7 @@ export class Login extends Component {
             )
         } else {
             return <>
-                <Redirect to="/map" component={Map} />
+                <Redirect to="/map" component={MapWrapper} />
             </>
         }
     }

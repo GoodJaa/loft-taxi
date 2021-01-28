@@ -1,6 +1,6 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects'
 import { AUTHENTICATE, logIn, profileSuccess } from '../actions';
-import { safelyServerLogin, safelyRequestProfileData } from '../api';
+import { safelyServerLogin, requestProfileData } from '../api';
 import { uploadUserData } from '../localStorageUploder';
 import { saveState } from '../initApp';
 
@@ -12,19 +12,28 @@ export function* authSaga() {
 export function* authenticateSaga(action) {
     const { email, password } = action.payload;
     const data = yield call(safelyServerLogin, email, password);
+
     if (data.success) {
         if (localStorage.getItem(data.token)) {
             localStorage.removeItem('token')
         }
-        uploadUserData(data.token);
-        yield put(logIn());
-        const profileData = yield put(safelyRequestProfileData(data.token))
-        if(profileData) {
-            profileSuccess(profileData)
-            console.log(profileData)
-        }
+
+        yield call(loadProfileData, data);
+
         saveState(yield select());
     } else {
         console.log(data.error)
+    }
+}
+
+function* loadProfileData(data) {
+    const profileData = yield call(requestProfileData, data.token);
+
+    uploadUserData(data.token);
+
+    yield put(logIn());
+
+    if (profileData) {
+        yield put(profileSuccess(profileData));
     }
 }

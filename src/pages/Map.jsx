@@ -3,8 +3,9 @@ import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
 import "../styles/layout.css";
 import {TaxiFormWrapper} from './TaxiForm';
+import {connect} from 'react-redux'
 
-export class Map extends Component {
+class Map extends Component {
     map = null;
     mapContainer = React.createRef();
 
@@ -32,3 +33,9 @@ export class Map extends Component {
         );
     }
 };
+
+export const MapWrapper = connect(
+    (state) => ({
+        profileData: state.profileReducer.profileData
+    })
+)(Map);

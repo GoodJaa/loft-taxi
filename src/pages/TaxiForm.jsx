@@ -1,51 +1,80 @@
-import React from 'react'
-import { withStyles, Input, Paper} from '@material-ui/core';
-import { styles } from "../styles/mapFormStyle"
+import React from 'react';
+import { ProfileWrapper } from './Profile';
+import { Redirect } from 'react-router-dom';
+import { withStyles, Input, Paper } from '@material-ui/core';
+import { formStyles } from "../styles/mapFormStyle";
 import { connect } from 'react-redux';
-import { loadAddress } from '../helpers/actions'
-import AsyncSelect from 'react-select'
+import { loadAddress } from '../helpers/actions';
+import Select from 'react-select';
 
 class TaxiForm extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {
+        jumpToProfile: false,
+        addresses: []
     }
 
-    // filterAddress = (inputValue: string) => {
-    //     const addresses = loadAddress().filter(i =>
-    //       i.label.toLowerCase().includes(inputValue.toLowerCase())
-    //     );
-    //     return addresses;
-    // };
-    inputClick = (inputValue) => {
-        const addresses = loadAddress();
-        console.log(addresses);
-        return addresses.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase))
+
+    componentDidMount() {
+        debugger
+        this.props.loadAddress();
+    }
+
+    // componentDidUpdate(prevProps) {
+    //     if(this.props.addresses !== prevProps.addresses) {
+            
+    //         this.setState({addresses: options})
+    //     }
+    // }
+
+    onClickButton = () => {
+        this.setState({jumpToProfile: true})
     }
 
     render() {
-        const { formWrapper } = this.props.classes
+        const { formWrapper, redirectToProfile } = this.props.classes;
+        const options = (this.props.addresses).map((x) => {
+            return {value: `${x}`, label: `${x}`}
+        })
 
-        return <>
-            <Paper className={formWrapper} elevation={3}>
-                <AsyncSelect
-                    name="colors"
-                    className="basic-single"
-                    classNamePrefix="select"
-                    cacheOptions
-                    defaultOptions
-                    loadOptions={this.inputClick}
-                />
-                <Input
-                    className={this.formInput}
-                />
-            </Paper>
-        </>;
+        return (
+            <>
+                {this.props.profileData.cardName
+
+                    ? <Paper className={formWrapper} elevation={3}>
+                        <Select
+                            name="addresses"
+                            className="basic-single"
+                            classNamePrefix="select"
+                            options={options}
+                        />
+                        <Select
+                            name="addresses"
+                            className="basic-single"
+                            classNamePrefix="select"
+                            options={options}
+                        />
+                    </Paper>
+                    : <Paper className={redirectToProfile} elevation={3}>
+                        <div>Заполните платежные данные</div>
+                        <button
+                            className="button"
+                            onClick={this.onClickButton}
+                        >
+                            Перейти в профиль
+                        </button>
+                        {this.state.jumpToProfile ? <Redirect to='/profile' component={ProfileWrapper} /> : null}
+                    </Paper>
+                }
+            </>
+        )
+
     }
 }
 
 export const TaxiFormWrapper = connect(
     (state) => ({
-        addresses: state.loadAddressReducer.addresses
+        addresses: state.loadAddressReducer.addresses,
+        profileData: state.profileReducer.profileData
     }),
     { loadAddress }
-)(withStyles(styles)(TaxiForm))
+)(withStyles(formStyles)(TaxiForm))

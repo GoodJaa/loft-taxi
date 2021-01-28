@@ -1,4 +1,4 @@
-export const styles = theme => ({
+export const formStyles = theme => ({
     formWrapper: {
         position: "absolute",
         top: "59px",
@@ -11,13 +11,17 @@ export const styles = theme => ({
         flexDirection: "column"
     },
 
-    formInput: {
-        width: "100%",
-        paddingBottom: "20px",
-        fontSize: "18px",
+    redirectToProfile: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        maxWidth: "50%",
+        zIndex: "100",
+        padding: "21px",
         display: "flex",
-        flex: "1",
-        alignItems: "center",
-        flexWrap: "wrap"
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center"
     }
 })

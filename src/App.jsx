@@ -3,7 +3,7 @@ import './styles/header.css';
 import './styles/layout.css';
 import { LoginWrapper } from './pages/Login';
 import { ProfileWrapper } from './pages/Profile';
-import { Map } from './pages/Map';
+import { MapWrapper } from './pages/Map';
 import { connect } from 'react-redux';
 import { logOut } from './helpers/actions'
 import { Logo } from 'loft-taxi-mui-theme';
@@ -63,7 +63,7 @@ export class App extends Component {
         <main className="main-page">
           <section className="main-section">
             <Switch>
-              <PrivateRoute path="/map" component={Map} />
+              <PrivateRoute path="/map" component={MapWrapper} />
               <PrivateRoute path="/profile" component={ProfileWrapper} />
               <Route exact path="/" component={LoginWrapper} />
             </Switch>

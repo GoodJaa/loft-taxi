@@ -1,13 +1,13 @@
-import {ADDRESS_LIST} from '../actions'
+import {SET_ADDRESS_LIST} from '../actions'
 
 const initialState = {
-    addresses: null
+    addresses: []
 }
 
 export default function loadAddressReducer(state = initialState, action) {
     switch(action.type) {
-        case ADDRESS_LIST: {
-            return {addresses: action.payload}
+        case SET_ADDRESS_LIST: {
+            return {addresses: action.payload.addresses}
         }
         default: {
             return state

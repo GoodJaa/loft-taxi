@@ -48,16 +48,16 @@ const serverProfile = async (cardNumber, expiryDate, cardName, cvc, token) => {
     )
 
     const data = await response.json();
-    console.log(data)
     return data;
 }
 
-const requestProfileData = async (token) => {
+export const requestProfileData = async (token) => {
     let response = await fetch(
         `https://loft-taxi.glitch.me/card?token=${token}`
     )
 
     const data = response.json();
+    console.log(data)
     return data;
 }
 
@@ -67,7 +67,6 @@ const downloadAddressList = async () => {
     )
 
     const data = response.json();
-    console.log(data)
     return data;
 }
 
@@ -84,5 +83,3 @@ export const safelyServerSignUp = errorHandlerWrapper(serverSignUp);
 export const safelyServerProfile = errorHandlerWrapper(serverProfile);
 
 export const safelyDownloadAddressList = errorHandlerWrapper(downloadAddressList);
-
-export const safelyRequestProfileData = errorHandlerWrapper(requestProfileData);
