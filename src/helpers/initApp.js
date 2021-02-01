@@ -2,7 +2,15 @@
 
 export const saveState = (state) => {
     try {
-        const preservedState = JSON.stringify(state);
+        console.log(state)
+        const preservedState = JSON.stringify(
+            {
+                authReducer: state.authReducer,
+                profileReducer: state.profileReducer,
+                profileSaveReducer: state.profileSaveReducer,
+                routeReducer: state.routeReducer
+            }
+            );
         localStorage.setItem('appState', preservedState);
     } catch (error) {
         console.log(`Возникла непредвиденная ошибка ${error.name}: ${error.value}. Call sequence: ${error.stack}`);

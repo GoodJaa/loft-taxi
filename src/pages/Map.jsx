@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
 import "../styles/layout.css";
-import {TaxiFormWrapper} from './TaxiForm';
-import {connect} from 'react-redux'
+import { TaxiFormWrapper } from './TaxiForm';
+import { connect } from 'react-redux';
+import {loadedMap} from '../helpers/actions'
 
 class Map extends Component {
     map = null;
@@ -18,6 +19,7 @@ class Map extends Component {
             center: [30.3056504, 59.9429126],
             zoom: 12
         })
+        this.props.loadedMap(this.map)
     }
 
     componentWillUnmount() {
@@ -36,6 +38,8 @@ class Map extends Component {
 
 export const MapWrapper = connect(
     (state) => ({
-        profileData: state.profileReducer.profileData
-    })
+        profileData: state.profileReducer.profileData,
+        calledTaxi: state.routeReducer.calledTaxi
+    }),
+    {loadedMap}
 )(Map);

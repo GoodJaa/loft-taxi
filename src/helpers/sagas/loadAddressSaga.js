@@ -8,7 +8,6 @@ export function* loadAddressSaga () {
 
 export function* downloadAddressSaga () {
     const data = yield call(safelyDownloadAddressList);
-    console.log(data.addresses)
     if (data) {
         yield put(loadAddressList(data.addresses));
     } else {

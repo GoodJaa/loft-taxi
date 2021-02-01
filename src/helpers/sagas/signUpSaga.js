@@ -16,7 +16,7 @@ export function* registrationSaga(action) {
     if (data.success) {
 
         uploadUserData(data.token);
-        put(signUp())
+        yield put(signUp())
     } else {
         console.log(data.error)
     }

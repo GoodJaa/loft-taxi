@@ -26,7 +26,7 @@ export function* authenticateSaga(action) {
     }
 }
 
-function* loadProfileData(data) {
+export function* loadProfileData(data) {
     const profileData = yield call(requestProfileData, data.token);
 
     uploadUserData(data.token);

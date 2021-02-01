@@ -57,7 +57,6 @@ export const requestProfileData = async (token) => {
     )
 
     const data = response.json();
-    console.log(data)
     return data;
 }
 
@@ -67,6 +66,16 @@ const downloadAddressList = async () => {
     )
 
     const data = response.json();
+    return data;
+}
+
+const getTaxiRoute = async (from, where) => {
+    let response = await fetch(
+        `https://loft-taxi.glitch.me/route?address1=${from}&address2=${where}`
+    )
+
+    const data = response.json();
+    console.log(data)
     return data;
 }
 
@@ -83,3 +92,5 @@ export const safelyServerSignUp = errorHandlerWrapper(serverSignUp);
 export const safelyServerProfile = errorHandlerWrapper(serverProfile);
 
 export const safelyDownloadAddressList = errorHandlerWrapper(downloadAddressList);
+
+export const safelyGetTaxiRoute = errorHandlerWrapper(getTaxiRoute);

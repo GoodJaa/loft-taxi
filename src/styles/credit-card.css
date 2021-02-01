@@ -28,12 +28,6 @@
   font-size: 1.3125rem;
 }
 
-.credit-card__icons-container {
-  display: flex;
-  width: 2rem;
-  height: 1.75rem;
-}
-
 .credit-card__logo {
   height: 2.0625rem;
 }

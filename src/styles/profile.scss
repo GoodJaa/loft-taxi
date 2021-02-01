@@ -20,6 +20,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    &.profile--tomap {
+        min-height: auto;
+    }
 }
 
 .profile__title-container {
@@ -79,10 +83,6 @@
     display: flex;
 }
 
-.profile__input-date {
-    display: flex;
-}
-
 .profile__label {
     color: #828282;
 }
@@ -91,10 +91,6 @@
     padding: .75rem 0 .75rem 0;
     border-bottom: 2px solid #E4E4E4;
     font-weight: 700;
-
-    &--month {
-        width: .9375rem;
-    }
 }
 
 .profile__inputs-delimiter {
