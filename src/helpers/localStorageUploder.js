@@ -8,5 +8,4 @@ export const uploadUserData = (token) => {
 
 export const uploadProfileData = (profileData) => {
     localStorage.currentUserProfileData = JSON.stringify(profileData);
-    console.log(JSON.parse(localStorage.currentUserProfileData))
 }

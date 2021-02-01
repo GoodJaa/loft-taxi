@@ -10,7 +10,6 @@ import { Redirect } from 'react-router-dom';
 import { MapWrapper } from './Map';
 import { formStyles } from '../styles/formStyle';
 import { withStyles } from '@material-ui/core';
-import { Formik } from 'formik';
 import InputMask from 'react-input-mask';
 
 
@@ -88,90 +87,85 @@ class Profile extends Component {
                     {!this.props.profileSave ?
                         <>
                             <div className="profile__main">
-                                <Formik>{({ onFormSubmit, touched, errors }) => {
-                                    return (
-                                        <form className="profile__form" id="form" onSubmit={this.onFormSubmit}>
-                                            <div className="profile__inputs-wrapper">
-                                                <div className="profile__input-wrapper">
-                                                    <label htmlFor="name" className="profile__label">
-                                                        Имя владельца
+                                <form className="profile__form" id="form" onSubmit={this.onFormSubmit}>
+                                    <div className="profile__inputs-wrapper">
+                                        <div className="profile__input-wrapper">
+                                            <label htmlFor="name" className="profile__label">
+                                                Имя владельца
                                                         </label>
-                                                    <input
-                                                        id="name"
-                                                        value={cardName}
-                                                        name="cardName"
-                                                        onChange={this.onInputChange}
-                                                        className="profile__input"
-                                                    />
-                                                    {
-                                                        !this.state.formFields.cardName && !this.props.requiredForm ?
-                                                            <div className={notRequiredForm}>Введите имя карты</div> :
-                                                            null
-                                                    }
-                                                </div>
-                                                <div className="profile__input-wrapper">
-                                                    <label htmlFor="number" className="profile__label">
-                                                        Номер карты
+                                            <input
+                                                id="name"
+                                                value={cardName}
+                                                name="cardName"
+                                                onChange={this.onInputChange}
+                                                className="profile__input"
+                                            />
+                                            {
+                                                !this.state.formFields.cardName && !this.props.requiredForm ?
+                                                    <div className={notRequiredForm}>Введите имя карты</div> :
+                                                    null
+                                            }
+                                        </div>
+                                        <div className="profile__input-wrapper">
+                                            <label htmlFor="number" className="profile__label">
+                                                Номер карты
                                                     </label>
+                                            <InputMask
+                                                id="number"
+                                                mask="9999  9999  9999  9999"
+                                                value={cardNumber}
+                                                name="cardNumber"
+                                                onChange={this.onInputChange}
+                                                className="profile__input"
+                                            />
+                                            {
+                                                !this.state.formFields.cardNumber && !this.props.requiredForm ?
+                                                    <div className={notRequiredForm}>Введите номер карты</div> :
+                                                    null
+                                            }
+                                        </div>
+                                        <div className="profile__inputs">
+                                            <div className="profile__input-wrapper">
+                                                <label htmlFor="dateMonth" className="profile__label">
+                                                    MM/YY
+                                                            </label>
+                                                <div className="profile__input-date">
                                                     <InputMask
-                                                        id="number"
-                                                        mask="9999  9999  9999  9999"
-                                                        value={cardNumber}
-                                                        name="cardNumber"
+                                                        id="date"
+                                                        mask="99/99"
+                                                        value={expiryDate}
+                                                        name="expiryDate"
                                                         onChange={this.onInputChange}
                                                         className="profile__input"
                                                     />
                                                     {
-                                                        !this.state.formFields.cardNumber && !this.props.requiredForm ?
-                                                            <div className={notRequiredForm}>Введите номер карты</div> :
+                                                        !this.props.requiredForm && !this.state.formFields.expiryDate ?
+                                                            <div className={notRequiredForm}>Введите дату</div> :
                                                             null
                                                     }
-                                                </div>
-                                                <div className="profile__inputs">
-                                                    <div className="profile__input-wrapper">
-                                                        <label htmlFor="dateMonth" className="profile__label">
-                                                            MM/YY
-                                                            </label>
-                                                        <div className="profile__input-date">
-                                                            <InputMask
-                                                                id="date"
-                                                                mask="99/99"
-                                                                value={expiryDate}
-                                                                name="expiryDate"
-                                                                onChange={this.onInputChange}
-                                                                className="profile__input"
-                                                            />
-                                                            {
-                                                                !this.props.requiredForm && !this.state.formFields.expiryDate ?
-                                                                    <div className={notRequiredForm}>Введите дату</div> :
-                                                                    null
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                    <div className="profile__input-wrapper">
-                                                        <label htmlFor="cvc" className="profile__label">
-                                                            CVC
-                                                            </label>
-                                                        <InputMask
-                                                            id="cvc"
-                                                            mask="999"
-                                                            value={cvc}
-                                                            name="cvc"
-                                                            onChange={this.onInputChange}
-                                                            className="profile__input"
-                                                        />
-                                                        {
-                                                            !this.state.formFields.cvc && !this.props.requiredForm ?
-                                                                <div className={notRequiredForm}>Введите cvc</div> :
-                                                                null
-                                                        }
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    );
-                                }}
-                                </Formik>
+                                            <div className="profile__input-wrapper">
+                                                <label htmlFor="cvc" className="profile__label">
+                                                    CVC
+                                                            </label>
+                                                <InputMask
+                                                    id="cvc"
+                                                    mask="999"
+                                                    value={cvc}
+                                                    name="cvc"
+                                                    onChange={this.onInputChange}
+                                                    className="profile__input"
+                                                />
+                                                {
+                                                    !this.state.formFields.cvc && !this.props.requiredForm ?
+                                                        <div className={notRequiredForm}>Введите cvc</div> :
+                                                        null
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                                 <div className="credit-card-wrapper">
                                     <div className="credit-card">
                                         <div className="credit-card__header">
@@ -184,7 +178,7 @@ class Profile extends Component {
                                         </div>
                                         <div className="credit-card__number">{this.state.formFields.cardNumber}</div>
                                         <div className={creditCardIcon}>
-                                            <MCIcon className={creditCardIcon}/>
+                                            <MCIcon className={creditCardIcon} />
                                         </div>
                                     </div>
                                 </div>

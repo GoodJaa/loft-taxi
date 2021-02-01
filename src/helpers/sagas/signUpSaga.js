@@ -12,7 +12,6 @@ export function* registrationSaga(action) {
     const { email, name, surname, password } = action.payload;
 
     const data = yield call(safelyServerSignUp, email, name, surname, password);
-    console.log(data)
     if (data.success) {
 
         uploadUserData(data.token);

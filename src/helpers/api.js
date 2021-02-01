@@ -75,7 +75,6 @@ const getTaxiRoute = async (from, where) => {
     )
 
     const data = response.json();
-    console.log(data)
     return data;
 }
 

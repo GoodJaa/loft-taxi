@@ -9,7 +9,6 @@ export function* routeSaga() {
 export function* getRouteSaga(action) {
     const { from, where } = action.payload;
     const coordinates = yield call(safelyGetTaxiRoute, from, where)
-    console.log(coordinates)
     if (coordinates) {
         yield put(setRoute(coordinates))
     }

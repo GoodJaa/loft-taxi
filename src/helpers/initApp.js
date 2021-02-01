@@ -2,7 +2,6 @@
 
 export const saveState = (state) => {
     try {
-        console.log(state)
         const preservedState = JSON.stringify(
             {
                 authReducer: state.authReducer,
