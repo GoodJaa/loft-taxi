@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './styles/layout.css';
 import { AppWithAuth } from './App';
 import { theme } from "loft-taxi-mui-theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { AuthProvider } from "./helpers/AuthContext"
+import { Provider } from "react-redux"
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom';
+import {store} from './helpers/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-      <AuthProvider>
-        <AppWithAuth />
-      </AuthProvider>
-    </MuiThemeProvider>
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+          <AppWithAuth />
+        </Provider>
+      </MuiThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,12 +1,15 @@
-input[type=submit].button {
+input[type=submit].button,
+.button {
   background-color: #FDBF5A;
-  width: 22.0625rem;
-  height: 3.8125rem;
-  border-radius: 4.375rem;
   font-size: 1.5rem;
   transition: background-color 0.3s;
-  padding: 1rem 0 1rem;
+  padding: 1.125rem 1.125rem;
+  flex-grow: 0;
+  max-width: 100%;
+  flex-basis: 100%;
+  border-radius: 4px;
 }
-input[type=submit].button:hover {
+input[type=submit].button:hover,
+.button:hover {
   background-color: #FFA842;
 }
